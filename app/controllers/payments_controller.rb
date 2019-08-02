@@ -1,24 +1,25 @@
 class PaymentsController < ApplicationController
   
   def index
-    puts "index"
-    @payments = Payment.all
+    if params[:agent_id].present?
+      @payments = Payment.find_by(agent_id: params[:agent_id])
+    else
+      @payments = Payment.all
+    end
+
     render :json => {:payments => @payments}
   end
   
   def show
-    puts "show"
-    @payment = Payment.find(agent_id: params[:agent_id])
+    @payment = Payment.find(params[:id])
     render :json => {:payments => @payment}
   end
 
   def new
-    puts "new"
     @payment = Payment.new
   end
 
   def create
-    puts "create"
     payment = Payment.create(payment_params)
 
     redirect_to payments_path
