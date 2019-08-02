@@ -21,7 +21,7 @@ class PaymentsController < ApplicationController
   def update
     @payment = Payment.find(params[:id])
     @payment.update(payment_update_maal)
-    render :json => {:payment => payment}
+    render :json => {:payment => @payment}
   end
 
   def create
