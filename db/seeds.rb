@@ -7,3 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Payment.create(id: "pay_D0vuT5LcJHpCEU", amount: 100, agent_id: "9823967243", ref: "921323164122")
 Payment.create(id: "pay_D0vuaWVP9sRosj", amount: 200, agent_id: "9897729069", ref: "916412213235")
+Payment.create(id: "pay_D0vuaWVP9sRos4", amount: 300, agent_id: "9897729069", ref: "916412213215")
