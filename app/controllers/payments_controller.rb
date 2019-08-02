@@ -1,4 +1,6 @@
 class PaymentsController < ApplicationController
+
+  skip_before_action :verify_authenticity_token
   
   def index
     if params[:agent_id].present?
@@ -20,13 +22,29 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    payment = Payment.create(payment_params)
+    maal = extract_useful_maal_from_webhook params
 
-    redirect_to payments_path
+    payment = Payment.create(maal)
+
+    render :json => {:payment => payment}
   end
 
   private
-  def payment_params
-    params.require(:payment).permit(:amount, :agent_id, :ref)
+
+  def extract_useful_maal_from_webhook data
+    payment = data['payload']['payment']['entity']
+
+    rrn = payment['acquirer_data']['rrn'] rescue nil
+
+    agent_id = payment['notes']['agent_id'] rescue nil
+
+    maal = {
+      id: payment['id'],
+      amount: payment['amount'],
+      ref: rrn,
+      agent_id: agent_id
+    }
+
+    maal
   end
 end
