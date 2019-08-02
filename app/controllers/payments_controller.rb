@@ -24,11 +24,11 @@ class PaymentsController < ApplicationController
 
     payment = Payment.create(maal)
 
-    redirect_to payments_path
+    render :json => {:payment => payment}
   end
 
   private
-  
+
   def extract_useful_maal_from_webhook data
     payment = data['payload']['payment']['entity']
 
