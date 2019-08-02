@@ -20,13 +20,25 @@ class PaymentsController < ApplicationController
   end
 
   def create
-    payment = Payment.create(payment_params)
+    maal = extract_useful_maal_from_webhook params
+
+    payment = Payment.create(maal)
 
     redirect_to payments_path
   end
 
   private
-  def payment_params
-    params.require(:payment).permit(:amount, :agent_id, :ref)
+  
+  def extract_useful_maal_from_webhook data
+    payment = data['payload']['payment']['entity']
+
+    maal = {
+      id: payment['id'],
+      amount: payment['amount'],
+      ref: payment['acquirer_data']['rrn'] rescue nil,
+      agent_id: payment['notes']['agent_id'] rescue nil,
+    }
+
+    maal
   end
 end
