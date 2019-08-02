@@ -2,7 +2,7 @@ class PaymentsController < ApplicationController
   
   def index
     if params[:agent_id].present?
-      @payments = Payment.find_by(agent_id: params[:agent_id])
+      @payments = Payment.where(agent_id: params[:agent_id])
     else
       @payments = Payment.all
     end
