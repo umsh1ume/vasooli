@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount: MyString
+  agent_id: MyString
+  ref: MyString
+
+two:
+  amount: MyString
+  agent_id: MyString
+  ref: MyString

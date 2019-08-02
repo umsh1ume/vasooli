@@ -1,0 +1,5 @@
+<ul>
+  <% @payments.each do |payment| %>
+    <li><%= link_to payment.amount, payment_path(payment)  %></li>
+  <% end %>
+</ul>
