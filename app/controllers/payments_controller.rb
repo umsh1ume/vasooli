@@ -32,11 +32,15 @@ class PaymentsController < ApplicationController
   def extract_useful_maal_from_webhook data
     payment = data['payload']['payment']['entity']
 
+    rrn = payment['acquirer_data']['rrn'] rescue nil
+
+    agent_id = payment['notes']['agent_id'] rescue nil
+
     maal = {
       id: payment['id'],
       amount: payment['amount'],
-      ref: payment['acquirer_data']['rrn'] rescue nil,
-      agent_id: payment['notes']['agent_id'] rescue nil,
+      ref: rrn,
+      agent_id: agent_id
     }
 
     maal
