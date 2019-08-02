@@ -18,8 +18,10 @@ class PaymentsController < ApplicationController
     render :json => {:payments => @payment}
   end
 
-  def new
-    @payment = Payment.new
+  def update
+    @payment = Payment.find(params[:id])
+    @payment.update(params)
+    render :json => {:payment => payment}
   end
 
   def create
@@ -47,6 +49,7 @@ class PaymentsController < ApplicationController
       id: payment['id'],
       amount: payment['amount'],
       ref: rrn,
+      status: 'successful',
       agent_id: agent_id
     }
 
