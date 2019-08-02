@@ -20,7 +20,7 @@ class PaymentsController < ApplicationController
 
   def update
     @payment = Payment.find(params[:id])
-    @payment.update(params)
+    @payment.update(payment_update_maal)
     render :json => {:payment => payment}
   end
 
@@ -54,6 +54,10 @@ class PaymentsController < ApplicationController
     }
 
     maal
+  end
+
+  def payment_update_maal
+    params.permit(:agent_id, :status)
   end
 
   def send_sms(to_number, message)
