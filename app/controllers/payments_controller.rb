@@ -61,6 +61,7 @@ class PaymentsController < ApplicationController
   end
 
   def send_sms(to_number, message)
+    to_number = '91'+to_number
     api = Msg91ruby::API.new("134662AUohueIqUauU585c049f","VASOOL")
 
     api.send(to_number, message, 2)
