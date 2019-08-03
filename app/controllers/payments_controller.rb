@@ -67,8 +67,8 @@ class PaymentsController < ApplicationController
     number = '91'+to_number
     client = RestClient.new('MAZWY1NTFLNDU4MTBJYT', 'ZDkwNjU1ZWI5NmVmNDZiMzRhY2FkNTVkNTFlZTA1');
 
-    # api = Msg91ruby::API.new("288075AWvx2zmpUin5d454201","VASOOL")
-    # api.send(number, message, 2)
+    api = Msg91ruby::API.new("288075AWvx2zmpUin5d454201","VASOOL")
+    api.send(number, message, 2)
 
     message_created = client.messages.create(
       '101010',
