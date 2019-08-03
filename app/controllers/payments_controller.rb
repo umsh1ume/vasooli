@@ -5,9 +5,9 @@ class PaymentsController < ApplicationController
   
   def index
     if params[:agent_id].present?
-      @payments = Payment.where(agent_id: params[:agent_id])
+      @payments = Payment.where(agent_id: params[:agent_id]).sort_by(&:created_at)
     else
-      @payments = Payment.all
+      @payments = Payment.all.sort_by(&:created_at)
     end
 
     render :json => {:payments => @payments}
