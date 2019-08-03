@@ -1,5 +1,8 @@
 class PaymentsController < ApplicationController
   require 'msg91ruby'
+  require 'plivo'
+
+  include Plivo
 
   skip_before_action :verify_authenticity_token
   
@@ -61,9 +64,16 @@ class PaymentsController < ApplicationController
   end
 
   def send_sms(to_number, message)
-    to_number = '91'+to_number
-    api = Msg91ruby::API.new("134662AUohueIqUauU585c049f","VASOOL")
+    number = '91'+to_number
+    client = RestClient.new('MAZWY1NTFLNDU4MTBJYT', 'ZDkwNjU1ZWI5NmVmNDZiMzRhY2FkNTVkNTFlZTA1');
 
-    api.send(to_number, message, 2)
+    # api = Msg91ruby::API.new("288075AWvx2zmpUin5d454201","VASOOL")
+    # api.send(number, message, 2)
+
+    message_created = client.messages.create(
+      '101010',
+      [number],
+      message
+    )
   end
 end
