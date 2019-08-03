@@ -49,7 +49,7 @@ class PaymentsController < ApplicationController
       id: payment['id'],
       amount: payment['amount'],
       ref: rrn,
-      status: 'successful',
+      status: 'success',
       agent_id: agent_id
     }
 
