@@ -6,9 +6,9 @@ time=$(date +%s)
 
 curl -X POST https://vasooli.herokuapp.com/webhook \
     -d "payload[payment][entity][id]=pay_$id" \
-    -d "payload[payment][entity][amount]=1000" \
+    -d "payload[payment][entity][amount]=100" \
     -d "payload[payment][entity][acquirer_data][rrn]=91$time" \
-    -d "payload[payment][entity][notes][agent_id]=9823967243"
+    -d "payload[payment][entity][notes][agent_id]=7622950688"
 
 # '{
 #   "event": "payment.authorized",
