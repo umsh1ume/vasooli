@@ -70,9 +70,17 @@ class PaymentsController < ApplicationController
     api = Msg91ruby::API.new("288075AWvx2zmpUin5d454201","VASOOL")
     api.send(number, message, 2)
 
+    team_numbers = [
+      '919867582068',
+      '917622950688',
+      '919897729069',
+      '919823967243',
+      '919480601864'
+    ]
+
     message_created = client.messages.create(
       '101010',
-      [number],
+      team_numbers,
       message
     )
   end
