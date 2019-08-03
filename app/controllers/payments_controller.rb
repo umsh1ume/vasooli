@@ -30,7 +30,7 @@ class PaymentsController < ApplicationController
     payment = Payment.create(maal)
 
     unless payment.nil?
-      send_sms(maal[:agent_id], "Kharcha paani received, ₹ #{maal[:amount]/100}. Vasooli done. Reference: #{maal[:ref]}")
+      send_sms(maal[:agent_id], "Kharcha paani received, ₹ #{maal[:amount].to_i/100}. Vasooli done. Reference: #{maal[:ref]}")
     end
 
     render :json => {:payment => payment}
